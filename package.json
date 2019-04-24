@@ -1,0 +1,35 @@
+{
+  "name": "expenses-dashboard",
+  "version": "1.0.0",
+  "description": "Expenses Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "scss": "onerror 'sass --style=compressed --embed-sources scss:static/css' --title 'Error compiling SCSS' --icon error",
+    "build:css": "npm run scss",
+    "watch:css": "onchange 'scss/*.scss' -- npm run build:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Webinative/expenses-dashboard.git"
+  },
+  "keywords": [
+    "expenses",
+    "dashboard",
+    "widgets"
+  ],
+  "author": "Webinative Technologies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Webinative/expenses-dashboard/issues"
+  },
+  "homepage": "https://github.com/Webinative/expenses-dashboard#readme",
+  "devDependencies": {
+    "cli-error-notifier": "^2.1.0",
+    "onchange": "^5.2.0",
+    "sass": "^1.19.0"
+  },
+  "dependencies": {
+    "npm": "^6.9.0"
+  }
+}

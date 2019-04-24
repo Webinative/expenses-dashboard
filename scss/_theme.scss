@@ -1,0 +1,42 @@
+$body-bg-color: #fdfdfd;
+$body-txt-color: #4e4e4e;
+
+$primary-color-1: #0088C5;
+$primary-color-2: #009CDE;
+$primary-color-3: #C4ECFE;
+$primary-color-4: #F1FBFF;
+
+body {
+    color: $body-txt-color;
+    background-color: $body-bg-color;
+}
+
+.m-widget {
+    --widget-box-shadow-color: #{transparentize($primary-color-1, 0.35)};
+
+    &__header {
+        border-bottom-color: $primary-color-1;
+        color: $primary-color-1;
+        background-color: $primary-color-3;
+    }
+}
+
+.m-txn {
+    background-color: $primary-color-4;
+
+    &__date {
+        color: $primary-color-2;
+    }
+
+    &__detail {
+        border-color: $primary-color-3;
+    }
+
+        &__detail-label {
+            color: $primary-color-2;
+        }
+
+    &:nth-child(even) {
+        background-color: white;
+    }
+}

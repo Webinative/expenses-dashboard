@@ -1,0 +1,81 @@
+.m-txn {
+    $classname: m-txn;
+    padding: 14px;
+    display: flex;
+    position: relative;
+
+    &__icon {
+        margin-right: 10px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: block;
+        align-self: center;
+    }
+
+    &__content {
+        margin-right: 20px;
+        flex-grow: 1;
+    }
+
+        &__desc {
+            margin-bottom: .25em;
+            display: block;
+        }
+
+        &__date {
+            display: block;
+        }
+
+    &__amount {
+        text-align: right;
+        justify-self: right;
+        white-space: nowrap;
+
+        &::before {
+            display: inline-block;
+        }
+        
+        &--gbp::before {
+            content: '£';
+        }
+
+        &--inr::before {
+            content: '₹';
+        }
+
+        &--usd::before {
+            content: '$';
+        }
+    }
+
+    &__detail {
+        border: 1px solid;
+        padding: 0 10px;
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 360px;
+        border-radius: 4px;
+        box-shadow: 0px 3px 6px -3px var(--widget-box-shadow-color);
+        display: none;
+
+        .#{$classname}:hover & {
+            display: block;
+        }
+    }
+
+        &__detail-info {
+            margin: 0.5em;
+            margin-left: 10px;
+        }
+
+        &__detail-label {
+            margin-left: -10px;
+            display: block;
+        }
+
+    &:last-child {
+        border-radius: 0 0 4px 4px;
+    }
+}
