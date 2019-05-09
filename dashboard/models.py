@@ -31,7 +31,7 @@ class PaymentSource(TimestampedModel):
     image = models.ImageField(upload_to='payment_source')
 
     def __str__(self):
-        return '%s: %s' % (self.source_type.handle, self.display_name)
+        return '%s (%s)' % (self.display_name, self.source_type.handle)
 
     def __repr__(self):
         return 'PaymentSource(display_name=\'%s\', source_type=\'%s\', image=\'%s\')' % (

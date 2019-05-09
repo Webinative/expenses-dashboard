@@ -6,12 +6,18 @@ $primary-color-2: #009CDE;
 $primary-color-3: #C4ECFE;
 $primary-color-4: #F1FBFF;
 
+$secondary-color-1: #379E8C;
+$secondary-color-2: #66CDBB;
+$secondary-color-3: #8FEEDD;
+$secondary-color-4: #ECFFFC;
+
 body {
     color: $body-txt-color;
     background-color: $body-bg-color;
 }
 
 .m-widget {
+    $classname: m-widget;
     --widget-box-shadow-color: #{transparentize($primary-color-1, 0.35)};
 
     &__header {
@@ -19,24 +25,51 @@ body {
         color: $primary-color-1;
         background-color: $primary-color-3;
     }
-}
 
-.m-txn {
-    background-color: $primary-color-4;
-
-    &__date {
-        color: $primary-color-2;
-    }
-
-    &__detail {
-        border-color: $primary-color-3;
-    }
-
-        &__detail-label {
+    .m-txn {
+        background-color: $primary-color-4;
+    
+        &__date {
             color: $primary-color-2;
         }
+    
+        &__detail {
+            border-color: $primary-color-3;
+        }
+    
+            &__detail-label {
+                color: $primary-color-2;
+            }
+    
+        &:nth-child(even) {
+            background-color: white;
+        }
+    }
 
-    &:nth-child(even) {
-        background-color: white;
+    &--secondary {
+        --widget-box-shadow-color: #{transparentize($secondary-color-1, 0.35)};
+
+        .#{$classname}__header {
+            border-bottom-color: $secondary-color-1;
+            color: $secondary-color-1;
+            background-color: $secondary-color-3;
+        }
+
+        .m-txn {
+            background-color: $secondary-color-4;
+
+            &__date {
+                color: $secondary-color-2;
+            }
+
+            &__detail {
+                border-color: $secondary-color-3;
+            }
+
+                &__detail-label {
+                    color: $secondary-color-2;
+                }
+        }
     }
 }
+
