@@ -16,12 +16,12 @@
         <div class="m-widget__main">
             {% for txn in yearly_expenses %}
             <div class="m-txn">
-                <img src="https://via.placeholder.com/34" alt="" class="m-txn__icon">
+                <img src="{{txn.payment_source.image.url}}" onerror="this.onerror=null;this.src='https://via.placeholder.com/34'" alt="" class="m-txn__icon">
                 <div class="m-txn__content">
                     <span class="m-txn__desc">{{ txn.description }}</span>
                     <span class="m-txn__date">{{ txn.start_date|yearly_txn_date }}</span>
                 </div>
-                <div class="m-txn__amount m-txn__amount--gbp">{{ txn.amount|to_pounds|floatformat:2 }}</div>
+                <div class="m-txn__amount">{{txn.currency}}{{txn.amount}}</div>
                 <div class="m-txn__detail">
                     <p class="m-txn__detail-info">
                         <span class="m-txn__detail-label">Source</span>
@@ -48,12 +48,12 @@
         <div class="m-widget__main">
             {% for txn in monthly_expenses %}
             <div class="m-txn">
-                <img src="https://via.placeholder.com/34" alt="" class="m-txn__icon">
+                <img src="{{txn.payment_source.image.url}}" onerror="this.onerror=null;this.src='https://via.placeholder.com/34'" alt="" class="m-txn__icon">
                 <div class="m-txn__content">
                     <span class="m-txn__desc">{{ txn.description }}</span>
                     <span class="m-txn__date">{{ txn.start_date|monthly_txn_date }}</span>
                 </div>
-                <div class="m-txn__amount m-txn__amount--gbp">{{ txn.amount|to_pounds|floatformat:2 }}</div>
+                <div class="m-txn__amount">{{txn.currency}}{{txn.amount}}</div>
                 <div class="m-txn__detail">
                     <p class="m-txn__detail-info">
                         <span class="m-txn__detail-label">Source</span>

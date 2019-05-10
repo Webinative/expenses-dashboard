@@ -65,7 +65,7 @@ class ExpenseFrequency(models.Model):
 
 class Expense(TimestampedModel):
     description = models.CharField(max_length=140)
-    amount = models.IntegerField(help_text='Value in subunits. 1 unit = 100 subunits.')
+    amount = models.DecimalField(max_digits=7, decimal_places=2)
     currency = models.CharField(max_length=5)
     frequency = models.ForeignKey(ExpenseFrequency, on_delete=models.CASCADE)
     start_date = models.DateField()
@@ -75,7 +75,7 @@ class Expense(TimestampedModel):
     billing_address = models.TextField()
 
     def __str__(self):
-        return '%s%d for %s' % (self.currency, self.amount/100, self.description)
+        return '%s%d for %s' % (self.currency, self.amount, self.description)
 
     def __repr__(self):
         return (
