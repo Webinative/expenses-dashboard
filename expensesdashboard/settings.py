@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'dashboard',
 ]
 
@@ -55,7 +56,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+# internal IPs for debug_toolbar
+
+INTERNAL_IPS = ('172.19.0.1',)
+
 
 ROOT_URLCONF = 'expensesdashboard.urls'
 
@@ -138,10 +145,37 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT')
+STATIC_ROOT = os.getenv('DJANGO_STATIC_ROOT')
 
 AUTH_USER_MODEL = 'dashboard.User'
 
 MEDIA_ROOT = os.getenv('DJANGO_MEDIA_ROOT')
 
 MEDIA_URL = '/media/'
+
+
+# logging
+# https://docs.djangoproject.com/en/2.0/topics/logging/
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'dashboard': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        }
+    }
+}
