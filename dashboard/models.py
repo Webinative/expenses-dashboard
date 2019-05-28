@@ -75,7 +75,7 @@ class Expense(TimestampedModel):
     billing_address = models.TextField()
 
     def __str__(self):
-        return '%s%d for %s' % (self.currency, self.amount, self.description)
+        return '%s%7.2f for %s' % (self.currency, self.amount, self.description)
 
     def __repr__(self):
         return (

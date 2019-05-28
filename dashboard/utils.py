@@ -43,7 +43,7 @@ def get_monthly_expenses(year=None, month=None):
         frequency = ExpenseFrequency.objects.get(handle='MONTHLY')
         return Expense.objects.filter(
             Q(end_date__isnull=True) | Q(end_date__gte=end_date),
-            start_date__lte=start_date,
+            Q(start_date__lte=start_date) | (Q(start_date__gte=start_date) & Q(start_date__lte=end_date)),
             frequency=frequency
         ).order_by('start_date__day')
     except ExpenseFrequency.DoesNotExist:

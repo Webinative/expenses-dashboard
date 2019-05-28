@@ -17,6 +17,7 @@ class HomePage(View):
         yearly_expenses = get_yearly_expenses(year=today.year)
         monthly_expenses = get_monthly_expenses(year=today.year, month=today.month)
         ctx = {
+            'today': today,
             'yearly_expenses': yearly_expenses,
             'monthly_expenses': monthly_expenses
         }

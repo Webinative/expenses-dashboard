@@ -47,7 +47,7 @@
         <div class="m-widget__header">Monthly</div>
         <div class="m-widget__main">
             {% for txn in monthly_expenses %}
-            <div class="m-txn">
+            <div class="m-txn {% if txn.start_date|date:"d" <= today|date:"d" %} m-txn--elapsed {% endif %}">
                 <img src="{{txn.payment_source.image.url}}" onerror="this.onerror=null;this.src='https://via.placeholder.com/34'" alt="" class="m-txn__icon">
                 <div class="m-txn__content">
                     <span class="m-txn__desc">{{ txn.description }}</span>

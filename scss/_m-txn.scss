@@ -3,6 +3,7 @@
     padding: 14px;
     display: flex;
     position: relative;
+    transition: all .3s linear;
 
     &__icon {
         margin-right: 10px;
@@ -35,7 +36,7 @@
         &::before {
             display: inline-block;
         }
-        
+
         &--gbp::before {
             content: '£';
         }
@@ -77,5 +78,14 @@
 
     &:last-child {
         border-radius: 0 0 4px 4px;
+    }
+
+    &--elapsed {
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all .3s linear;
     }
 }

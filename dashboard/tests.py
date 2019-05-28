@@ -58,6 +58,23 @@ class TestGetMonthlyExpenses(TestCase):
         )
         expense_2.save()
 
+        # MONTHLY: From 15th Sep till 15th Dec this year
+        expense_3 = Expense(
+            description='Exp_1.2',
+            amount=102,
+            currency='£',
+            frequency=monthly,
+            start_date=timezone.datetime(now.year, 9, 15),
+            end_date=timezone.datetime(now.year, 12, 15),
+            payment_source=barclays,
+            payee=payee,
+            billing_address=(
+                'Zoho Corporation\n',
+                'Chennai'
+            )
+        )
+        expense_3.save()
+
         self.now = now
 
     def test_get_yearly_expenses(self):
@@ -86,6 +103,20 @@ class TestGetMonthlyExpenses(TestCase):
         self.assertEqual('$', first.currency)
 
     def test_get_monthly_expense_for_case_4(self):
+        """Monthly expense that starts mid-month should be returned
+        """
+        expenses = get_monthly_expenses(self.now.year, 9)
+        self.assertEqual(len(expenses), 2)
+
+        first: Expense = expenses.first()
+        self.assertEqual('Exp_1.1', first.description)
+        self.assertEqual('$', first.currency)
+
+        second: Expense = expenses.last()
+        self.assertEqual('Exp_1.2', second.description)
+        self.assertEqual('£', second.currency)
+
+    def test_get_monthly_expense_for_case_5(self):
         """Monthly expense that starts next month should NOT be returned
         """
         expenses = get_monthly_expenses(self.now.year, 6)
